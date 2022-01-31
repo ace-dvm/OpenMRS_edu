@@ -82,11 +82,11 @@ The following directories already exist on epr99. If the modules and owa directo
 /var/lib/OpenMRS/modules/
 /var/lib/OpenMRS/owa/
 
-After the installer has run successfully once, stop Tomcat and copy ALL of the .omod files into /modules/ and chown them to tomcat (and chmod 777, although I'm not sure this is needed). 
-Make sure any owa files that are wanted are unzipped into approriate subdirectories in /owa/ and chown'd to tomcat (and chmod 777).
+After the installer has run successfully once, stop Tomcat and copy ALL of the .omod files into /modules/ and chown them to tomcat. 
+Place the owa zip files in the /owa/ directory, make sure they are chown'd to tomcat (and chmod 777).
 Restart tomcat.
 
 Follow instructions for configuring order entry:
 https://wiki.openmrs.org/display/projects/Order+Entry+UI+Administrator+Guide 
 
-If loading the lab orderables fails, see the file insertLabOrderables for further instructions.
+The instructions given did not work for importing the lab orderables; see the insertLabOrderables file in this repo for instructions on how to get lab orderables.
