@@ -65,28 +65,41 @@ Download the openmrs.war file and put it in $CATALINA_HOME (/opt/tomcat/webapps/
 Start tomcat, navigate to http://localhost:8080/openmrs/ and run the installer.
 (if you are not running on localhost, put your url instead of localhost)
 
-If it won't correctly create the database user, log into the db:
-mysql -u root -p
-(enter the root password when prompted)
-then:
-CREATE USER 'admin'@'%' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON * . * TO 'admin'@'%';
-FLUSH PRIVILEGES;
+Make sure you specify the correct connection string for the database. On my system this was:
+jdbc:mysql://localhost/openmrs?autoReconnect=true&sessionVariables=default_storage_engine=InnoDB&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+but your system might be different.
+Skip the implementation ID; having one seems to cause the installer to fail. :(
 
-If it won't correctly create the database, then:
-create database openmrs;
-ALTER DATABASE openmrs CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+// If it won't correctly create the database user, log into the db:
+  mysql -u root -p
+  (enter the root password when prompted)
+  then:
+  CREATE USER 'admin'@'%' IDENTIFIED BY 'password';
+  GRANT ALL PRIVILEGES ON * . * TO 'admin'@'%';
+  FLUSH PRIVILEGES;
+  (change the word password to a sensible password).
 
-The following directories already exist on epr99. If the modules and owa directory aren't created on the first run of the installer, create them and chown them to tomcat:tomcat .
-/var/lib/OpenMRS
-/var/lib/OpenMRS/modules/
-/var/lib/OpenMRS/owa/
+// If it won't correctly create the database, then:
+  create database openmrs;
+  ALTER DATABASE openmrs CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+The installer should create directory named openmrs with a folder /modules/ and /owa/ inside it. If the installer fails to create these folders, find the openmrs-runtime.properties file and create these folders in the same directory as that file. Chown them to the openmrs/tomcat user (or chmod 777 them).
 
 After the installer has run successfully once, stop Tomcat and copy ALL of the .omod files into /modules/ and chown them to tomcat. 
-Place the owa zip files in the /owa/ directory, make sure they are chown'd to tomcat (and chmod 777).
-Restart tomcat.
+Place the owa zip files in the /owa/ directory, make sure they are chown'd to the openmrs/tomcat user (or chmod 777 them).
+Restart tomcat. It will take a while to restart.
+
+There is a bug in the reporting module where it specifies mysql, but should say mysql or mariadb. (See https://talk.openmrs.org/t/unable-to-install-module-reporting/33293/27 ). If you are running MariaDB, you will get a login screen with the old UI, and the module manager will show that Reporting is not running. If you encounter this problem:
+   Stop tomcat.
+   Log into the database and run
+   ALTER TABLE reporting_report_design ADD COLUMN report_definition_uuid char(38);
+   Start tomcat.
+
 
 Follow instructions for configuring order entry:
 https://wiki.openmrs.org/display/projects/Order+Entry+UI+Administrator+Guide 
 
 The instructions given did not work for importing the lab orderables; see the insertLabOrderables file in this repo for instructions on how to get lab orderables.
+
+Set the Global Property referencedemodata.createDemoPatientsOnNextStartup to the number of fake patients that are wanted.
+Restart tomcat.
