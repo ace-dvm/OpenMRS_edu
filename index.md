@@ -32,6 +32,11 @@ Each student has their own copy of the case, indicated by a prefix to the surnam
 
 Each case-day contains only the events that have happened up to that point, so the teacher can ask the students to think about what they would do for the next steps.
 
+If we open up the Monday morning case, we see only the events up 'til Monday morning:
+![Screenshot OpenMRS Monday Irma](day1Irma.PNG "day 1 of Irma's case in OpenMRS")
+
+Now the story can unfold as planned.
+
 ## Decision support / Arden Syntax
 An important feature for our course is the ability for the students to create _decision support_ in the electronic health record.
 
