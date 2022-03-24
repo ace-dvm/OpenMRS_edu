@@ -4,7 +4,10 @@ Steps for building synthetic patients:
 ```bash
 mysqldump -u openmrs -p openmrs > /home/YOURHOME/Database_clean.sql
 ```
-(This should be a working database. All passwords have been reset to Password1.)
+This should be a working database. All passwords have been reset to Password1. You will need to change the value of the owa.appFolderPath global property to your own app folder.
+```sql
+update global_property set property_value = '/path/to/.OpenMRS/owa' where property = 'owa.appFolderPath';
+```
 
 3. Using the OpenMRS user interface, enter all the data for the patient. If possible, enter events in the order that they occur in the scenario. It is important to start with a sufficiently-detailed scenario. You will need the specific diagnoses, drugs, dosages, as well as files to attach such as referral letters, radiographs, etc. In this example we have also used attachments for blood test results, because this made the case much simpler to build.
 4. Make another copy of the database using mysqldump. Be sure to give it a different file name.
