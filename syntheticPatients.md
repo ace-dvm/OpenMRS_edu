@@ -4,7 +4,13 @@ Steps for building synthetic patients:
 ```bash
 mysqldump -u openmrs -p openmrs > /home/YOURHOME/Database_clean.sql
 ```
-This should be a working database. All passwords have been reset to Password1. You will need to change the value of the owa.appFolderPath global property to your own app folder.
+This should be a working database. All passwords have been reset to Password1. It contains only the default OpenMRS concepts and the concepts required to run this example. Some of the English concept names have been changed to Dutch words. 
+
+You can replace your database with this one by copying the file to your /tmp/ directory and running:
+```sql
+source /tmp/Database_clean.sql
+```
+If you do this, you might want to back up your own database first, using mysqldump. You will need to change the value of the owa.appFolderPath global property to your own app folder.
 ```sql
 update global_property set property_value = '/path/to/.OpenMRS/owa' where property = 'owa.appFolderPath';
 ```
@@ -14,7 +20,7 @@ update global_property set property_value = '/path/to/.OpenMRS/owa' where proper
 ```bash
 mysqldump -u openmrs -p openmrs > /home/YOURHOME/Database_initialIrma.sql
 ```
-5. Create a diff of the two database files.
+5. Create a [diff](https://github.com/ace-dvm/OpenMRS_edu/blob/master/diffIrma.diff) of the two database files.
 ```bash
 diff Database_clean.sql Database_initialIrma.sql > diffIrma.diff
 ```
