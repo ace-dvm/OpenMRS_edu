@@ -8,11 +8,11 @@ The current contents include:
 * Instructions for getting OpenMRS installed and set up: [OpenMRS_build_instructions](https://github.com/ace-dvm/OpenMRS_edu/blob/master/OpenMRSBuildInstructions.txt)
 * Instructions for building copies of [synthetic patients](https://github.com/ace-dvm/OpenMRS_edu/blob/master/syntheticPatients.md)
 * [A script](https://github.com/ace-dvm/OpenMRS_edu/blob/master/createOpenmrsminimallabs.sql) for getting the lab metadata imported if the metadata import fails
-* You can find our Arden Syntax module here: https://github.com/RSSchermer/openmrs-module-ardenreminders
+* You can find our Arden Syntax module here: [https://github.com/RSSchermer/openmrs-module-ardenreminders](https://github.com/RSSchermer/openmrs-module-ardenreminders)
 
 You may also wish to visit:
 * The OpenMRS github: https://github.com/OpenMRS
-* The [Arden2ByteCode](http://plri.github.io/arden2bytecode/) github: https://github.com/PLRI/arden2bytecode
+* The [Arden2ByteCode](http://plri.github.io/arden2bytecode/) github: [https://github.com/PLRI/arden2bytecode](https://github.com/PLRI/arden2bytecode)
 
 ## Using OpenMRS for education
 ![Screenshot OpenMRS record John Q Public](JohnQPublic.PNG "A record in OpenMRS")
