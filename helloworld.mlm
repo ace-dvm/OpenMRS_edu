@@ -1,0 +1,38 @@
+maintenance:
+    title: hello_world;;
+    mlmname: hello_world;;
+    arden: Version 2.5;;
+    version: 1.0;;
+    institution: ;;
+    author: Super User2;;
+    specialist: ;;
+    date: 2021-49-28;;
+    validation: testing;;
+
+library:
+    purpose: ;;
+    explanation: ;;
+    keywords: ;;
+    citations: ;;
+
+knowledge:
+    type: data_driven;;
+
+    data:
+        // __CURRENT_PATIENT_ID__ will be replaced with the current patient's ID by the runtime
+        patientExists := READ EXIST { SELECT * FROM patient WHERE patient_id=__CURRENT_PATIENT_ID__; };
+    ;;
+
+    evoke:
+        // This MLM is called directly, so no evoke statement is required.
+    ;;
+
+    logic:
+        CONCLUDE patientExists;
+    ;;
+
+    action:
+        WRITE "The patient exists! (This is a placeholder output message for the `hello_world` Medical Logic Module.)";
+    ;;
+
+end:
